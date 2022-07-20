@@ -1,0 +1,28 @@
+package blog
+
+import (
+	"time"
+)
+
+type Blog struct {
+	ID          string    `pb:"1" json:"id"`
+	Title       string    `pb:"2" json:"title"`
+	CreatedAt   time.Time `pb:"3" json:"created_at"`
+	CreatedBy   string    `pb:"4" json:"created_by"`
+	UpdatedAt   time.Time `pb:"5" json:"updated_at"`
+	UpdatedBy   string    `pb:"6" json:"updated_by"`
+	DeleteAt    time.Time `pb:"7" json:"deleted_at"`
+	DeletedBy   string    `pb:"8" json:"deleted_by"`
+}
+
+type CreateBlogRequest struct {
+	Blog Blog `pb:"1" json:"blog"`
+}
+
+type CreateBlogResponse struct {
+	ID string `pb:"1" json:"id"`
+}
+
+type BlogService interface {
+	CreateBlog(CreateBlogRequest) CreateBlogResponse
+}
